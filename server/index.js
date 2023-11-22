@@ -16,7 +16,11 @@ export const instance = new razorpay({
     key_secret: process.env.SECRET,
   });
 app.use(json());
-app.use(cors());
+app.use(cors( {
+    origin:["https://clone-six-sigma.vercel.app"],
+    method:["POST","GET"],
+    credentials:true
+}));
 app.use(express.urlencoded({extended:true}));
 app.use("/",route)
 

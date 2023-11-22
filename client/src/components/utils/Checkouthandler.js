@@ -1,9 +1,9 @@
 import axios from "axios";
 export const CheckoutHandler = async (amount,Name) => {
 
-    const { data: { key } } = await axios.get("http://localhost:8000/api/getkey")
+    const { data: { key } } = await axios.get("https://clone-six-sigma.vercel.app/api/getkey")
 
-    const { data: { order } } = await axios.post(" http://localhost:8000/checkout", {
+    const { data: { order } } = await axios.post(" https://clone-six-sigma.vercel.app/checkout", {
         amount
     })
 
