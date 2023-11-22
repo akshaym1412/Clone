@@ -42,5 +42,5 @@ const Username=process.env.DB_Username;
 const Password=process.env.DB_Password;
 app.listen(port,()=>{
     console.log(`Server is running at the port ${port}`);
-    connection(Username,Password);
+    connection(process.env.Mongo_URL);
 })
