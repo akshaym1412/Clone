@@ -37,6 +37,9 @@ app.use("/api",route)
 app.get("/api/getkey",(req,res)=>{
     return res.status(200).json({key:process.env.KEY})
 })
+app.get("/",(req,res)=>{
+   res.send("Akshay") 
+})
 const port=process.env.PORT||8000;
 const Username=process.env.DB_Username;
 const Password=process.env.DB_Password;
