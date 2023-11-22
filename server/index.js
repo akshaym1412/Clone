@@ -22,7 +22,7 @@ app.use(cors( {
     credentials:true
 }));
 app.use(express.urlencoded({extended:true}));
-app.use("/",route)
+app.use("/api",route)
 
 // app.use(express.static(path.join(__dirname,"./client/build")));
 
