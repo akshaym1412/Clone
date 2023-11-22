@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Axios from "axios";
 
 export const productone=createAsyncThunk("product",async(id)=>{
-   const {data}=await Axios.get(`/product/${id}`)
+   const {data}=await Axios.get(`http://localhost:8000/product/${id}`)
    return data;
 })
 

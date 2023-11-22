@@ -5,9 +5,9 @@ import route from './Routes/routes.js';
 import cors from 'cors';
 import defalutdata from './default.js';
 import razorpay from "razorpay";
-import path from 'path';
+// import path from 'path';
 
-const __dirname=path.resolve();
+// const __dirname=path.resolve();
 
 dotenv.config();
 const app=express();
@@ -16,24 +16,17 @@ export const instance = new razorpay({
     key_secret: process.env.SECRET,
   });
 app.use(json());
-app.use(cors(
-    {
-        origin:["https://flipkart1-clone.vercel.app"],
-        method:["POST","GET"],
-        credentials:true
-    }
-
-));
+app.use(cors());
 app.use(express.urlencoded({extended:true}));
 app.use("/",route)
 
-app.use(express.static(path.join(__dirname,"./client/build")));
+// app.use(express.static(path.join(__dirname,"./client/build")));
 
-app.get('*',function(_, res){
-    res.sendFile(path.join(__dirname,"./client/build/index.html"),function(err){
-        res.status(500).send(err)
-    })
-})
+// app.get('*',function(_, res){
+//     res.sendFile(path.join(__dirname,"./client/build/index.html"),function(err){
+//         res.status(500).send(err)
+//     })
+// })
 
 
 
@@ -47,4 +40,3 @@ app.listen(port,()=>{
     console.log(`Server is running at the port ${port}`);
     connection(Username,Password);
 })
-defalutdata();

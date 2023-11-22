@@ -1,10 +1,12 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
+import { useContext } from 'react';
 import { Box, Button } from '@mui/material'
 import { ShoppingCart as Cart, FlashOn as Flash } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import {add} from '../Redux/Slice3';
 import { useNavigate } from 'react-router-dom';
-import { checkoutHandler } from '../utils/Checkouthandler';
+import { CheckoutHandler } from '../utils/Checkouthandler';
+import { DataContext } from '../../App';
 
 const LeftContainer=styled(Box)(({theme})=>({
 display:"flex",
@@ -41,11 +43,22 @@ const Addcart=styled(Box)(({theme})=>({
 }))
 
 export const ActionItem = ({users}) => {
+  const {accounts}=useContext(DataContext)
+  console.log(accounts);
   const navigate=useNavigate();
   const dispatch=useDispatch();
   const handleClick=(users)=>{
     dispatch(add(users));
     navigate("/Cartdetails");
+  }
+  const handlecart=(price)=>{
+   if(accounts===""){
+    alert("Please Login and continue")
+   }
+   else{
+   CheckoutHandler(price,accounts);
+    
+   }
   }
   return (
     <>
@@ -56,7 +69,7 @@ export const ActionItem = ({users}) => {
         </Imagediv>
         <Addcart>
         <Button variant='contained' sx={{width:"225px",minWidth:"150px",height:"50px",backgroundColor:"orange"}} onClick={()=>(handleClick(users))}><Cart/>Add to Cart</Button>
-        <Button variant='contained' sx={{width:"225px",minWidth:"150px",marginLeft:"40px",backgroundColor:"red"}} onClick={()=>checkoutHandler(users.newPrice)}><Flash style={{marginTop:"10px"} } />Buy Now</Button>
+        <Button variant='contained' sx={{width:"225px",minWidth:"150px",marginLeft:"40px",backgroundColor:"red"}} onClick={()=>(handlecart(users.newPrice))}><Flash style={{marginTop:"10px"} } />Buy Now</Button>
         </Addcart>
     </LeftContainer>
     }
